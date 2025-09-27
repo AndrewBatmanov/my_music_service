@@ -4,33 +4,33 @@ create table if not exists Genre (
 );
 
 create table if not exists artist (
-    ArtistID serial primary key,  -- ← ДОБАВЛЕНА ЗАПЯТАЯ ЗДЕСЬ!
+    ArtistID serial primary key,
     name VARCHAR(100) not null,
     GenreID int references Genre(GenreID)
 );
 
 create table if not exists Album (
-    AlbumID SERIAL PRIMARY KEY,
+    AlbumID SERIAL primary key,
     name VARCHAR(200) NOT NULL,
     year INT,
-    ArtistID INT NOT NULL REFERENCES Artist(ArtistID) 
+    ArtistID INT NOT NULL references Artist(ArtistID) 
 );
 
 create table if not exists Track (
-    TrackID SERIAL PRIMARY KEY,
-    name VARCHAR(200) NOT NULL,
+    TrackID SERIAL primary key,
+    name VARCHAR(200) not null,
     length INT,
-    AlbumID INT NOT NULL REFERENCES Album(AlbumID) 
+    AlbumID INT not null references Album(AlbumID) 
 );
 
 create table if not exists Collection (
-    CollectionID SERIAL PRIMARY KEY,
-    name VARCHAR(200) NOT NULL,
+    CollectionID SERIAL primary key,
+    name VARCHAR(200) not null,
     year INT
 );
 
 create table if not exists CollectionTrack (
-    CollectionID INT REFERENCES Collection(CollectionID),
-    TrackID INT REFERENCES Track(TrackID),
-    PRIMARY KEY (CollectionID, TrackID)
+    CollectionID INT references Collection(CollectionID),
+    TrackID INT references Track(TrackID),
+    primary key (CollectionID, TrackID)
 );
