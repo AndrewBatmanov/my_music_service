@@ -1,36 +1,36 @@
-create table if not exists Genre (
-    GenreID SERIAL primary key,
-    name VARCHAR(100) not null unique
+CREATE TABLE IF NOT EXISTS Genre (
+	GenreID SERIAL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL UNIQUE
 );
 
-create table if not exists artist (
-    ArtistID serial primary key,
-    name VARCHAR(100) not null,
-    GenreID int references Genre(GenreID)
+CREATE TABLE IF NOT EXISTS Artist (
+	ArtistID SERIAL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL UNIQUE,
+	GenreID INT REFERENCES Genre(GenreID)
 );
 
-create table if not exists Album (
-    AlbumID SERIAL primary key,
-    name VARCHAR(200) NOT NULL,
-    year INT,
-    ArtistID INT NOT NULL references Artist(ArtistID) 
+CREATE TABLE IF NOT EXISTS Album (
+	AlbumID SERIAL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL UNIQUE,
+	year INT NOT NULL,
+	ArtistID INT NOT NULL REFERENCES Artist(ArtistID)
 );
 
-create table if not exists Track (
-    TrackID SERIAL primary key,
-    name VARCHAR(200) not null,
-    length INT,
-    AlbumID INT not null references Album(AlbumID) 
+CREATE TABLE IF NOT EXISTS Track (
+	TrackID SERIAL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL,
+	lenght INT,
+	AlbumID INT NOT NULL REFERENCES Album(AlbumID)
 );
 
-create table if not exists Collection (
-    CollectionID SERIAL primary key,
-    name VARCHAR(200) not null,
-    year INT
+CREATE TABLE IF NOT EXISTS Collection (
+	CollectionID SERIAL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL,
+	year INT
 );
-
-create table if not exists CollectionTrack (
-    CollectionID INT references Collection(CollectionID),
-    TrackID INT references Track(TrackID),
-    primary key (CollectionID, TrackID)
+ 
+CREATE TABLE IF NOT EXISTS CollectionTrack (
+	CollectionID SERIAL PRIMARY KEY,
+	TrackID INT REFERENCES Track(TrackID),
+	PRIMARY KEY (CollectionID, TrackID)
 );
