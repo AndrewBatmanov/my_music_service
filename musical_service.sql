@@ -34,3 +34,15 @@ CREATE TABLE IF NOT EXISTS CollectionTrack (
 	TrackID INT REFERENCES Track(TrackID),
 	PRIMARY KEY (CollectionID, TrackID)
 );
+
+CREATE TABLE IF NOT EXISTS GenreArtist (
+    GenreID INT REFERENCES Genre(GenreID),
+    ArtistID INT REFERENCES Artist(ArtistID),
+    PRIMARY KEY (GenreID, ArtistID)
+);
+
+CREATE TABLE IF NOT EXISTS ArtistAlbum (
+    ArtistID INT REFERENCES Artist(ArtistID),
+    AlbumID INT REFERENCES Album(AlbumID),
+    PRIMARY KEY (ArtistID, AlbumID)
+);
